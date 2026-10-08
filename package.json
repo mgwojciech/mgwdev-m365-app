@@ -12,8 +12,8 @@
   },
   "dependencies": {
     "@fluentui/react-components": "^9.74.7",
-    "mgwdev-m365-components": "^0.1.0",
-    "mgwdev-m365-helpers": "^0.3.5",
+    "mgwdev-m365-components": "^0.1.2",
+    "mgwdev-m365-helpers": "^0.3.6",
     "react": "^19.2.8",
     "react-dom": "^19.2.8",
     "react-router-dom": "^7.18.1"
