@@ -1,75 +1,63 @@
-# React + TypeScript + Vite
+# mgwdev-m365-app
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+This repository is a template for building Microsoft 365 React applications with Vite, TypeScript, Fluent UI, and the mgwdev-m365 helper libraries.
 
-Currently, two official plugins are available:
+## Create a new project from this template
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+The suggested way to initialize a new project from this template is:
 
-## React Compiler
-
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
-
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
-
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
-
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-
+```bash
+npx degit mgwojciech/mgwdev-m365-app new-project
 ```
 
-You can also install [eslint-plugin-react-x](https://npmx.dev/package/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://npmx.dev/package/eslint-plugin-react-dom) for React-specific lint rules:
+Replace `new-project` with the folder name you want for the generated app.
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+### After generation
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+1. Change into the new folder.
+2. Install dependencies with `npm install`.
+3. Create a `.env.local` file in the project root.
+4. Add the environment values required by the app:
 
+```env
+VITE_FRONTEND_CLIENT_ID=your-application-client-id
+VITE_FRONTEND_TENANT_ID=organizations
+VITE_FRONTEND_DATAVERSE_ENV=your-dataverse-environment-url
+VITE_FRONTEND_SP_SITE_URL=your-sharepoint-site-url
 ```
+
+5. Start the app with `npm start`.
+
+### Alternative: GitHub template button
+
+If you prefer creating a new repository on GitHub first, use the GitHub template button on this repository and then clone the generated repo locally.
+
+## Available scripts
+
+- `npm start` starts the Vite development server.
+- `npm run build` type-checks and builds the production bundle.
+- `npm run lint` runs ESLint across the workspace.
+- `npm test` runs the Vitest test suite.
+- `npm run preview` serves the production build locally.
+
+## What this template includes
+
+- React 19 and TypeScript
+- Vite for local development and production builds
+- Fluent UI components and layout primitives
+- Microsoft 365 service wiring for authentication, Graph, SharePoint, and Dataverse
+- A starter landing page that reads the signed-in user and connected service data
+
+## Project structure
+
+- `src/App.tsx` wires authentication and service providers.
+- `src/pages/LandingPage.tsx` contains the default landing experience.
+- `src/services/` contains API wrappers for Dataverse and SharePoint.
+- `src/model/` contains the TypeScript models used by the app.
+- `src/components/` contains shared UI components.
+
+## Notes
+
+- The app expects the Vite environment variables above to be present at runtime.
+- `VITE_FRONTEND_TENANT_ID` defaults to `organizations` if it is not set.
+- The redirect flow uses `/redirect`, so make sure that path is allowed in your identity app registration.
