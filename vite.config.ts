@@ -13,6 +13,21 @@ export default defineConfig({
       input:{
         main: resolve(import.meta.dirname, 'index.html'),
         redirect: resolve(import.meta.dirname, 'redirect.html')
+      },
+      output: {
+        manualChunks(id) {
+          if (id.includes('node_modules')) {
+            if (id.includes('react') || id.includes('react-dom') || id.includes('react-router-dom')) {
+              return 'vendor';
+            }
+            if (id.includes('@fluentui')) {
+              return 'fluent';
+            }
+            if (id.includes('mgwdev-m365')) {
+              return 'ms365';
+            }
+          }
+        }
       }
     }
   }

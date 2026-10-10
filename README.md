@@ -19,11 +19,24 @@ Replace `new-project` with the folder name you want for the generated app.
 3. Create a `.env.local` file in the project root.
 4. Add the environment values required by the app:
 
+You will need an app registration in EntraId with default scopes to MS Graph, Dynamics CRM and SharePoint.
+Of course, if needed - You can remove the unneeded code and work only with Grpah, SP or Dataverse.
+Your app registration needs to have configured reply url to http://localhost:3000 and http://localhost:3000/redirect - if You already have an app registered on different port, just update the port in `vite.config.ts`
+
 ```env
 VITE_FRONTEND_CLIENT_ID=your-application-client-id
 VITE_FRONTEND_TENANT_ID=organizations
 VITE_FRONTEND_DATAVERSE_ENV=your-dataverse-environment-url
 VITE_FRONTEND_SP_SITE_URL=your-sharepoint-site-url
+```
+
+Sample env content
+
+```env
+VITE_FRONTEND_CLIENT_ID=45601286-xxxx-xxxx-xxxx-6e5b55ecab0d
+VITE_FRONTEND_SP_SITE_URL=https://contoso.sharepoint.com
+VITE_FRONTEND_TENANT_ID=9e07d1e1-xxxx-xxxx-xxxx-35da72900a82
+VITE_FRONTEND_DATAVERSE_ENV=https://contoso-dev.api.crm4.dynamics.com
 ```
 
 5. Start the app with `npm start`.
