@@ -6,6 +6,7 @@ import type { DataverseUser } from "../model/DataverseUser";
 import { DataverseService } from "../services/DataverseService";
 import { SharePointService } from "../services/SharePointService";
 import { makeStyles, tokens } from "@fluentui/react-components";
+import { useLocalization } from "../context/LocalizationContext";
 
 const useStyles = makeStyles({
     page: {
@@ -267,6 +268,7 @@ export default function LandingPage() {
     const [user, setUser] = useState<IUser | null>(null);
     const [site, setSite] = useState<SPSite | null>(null);
     const [dataverseUser, setDataverseUser] = useState<DataverseUser | null>(null);
+    const { getLocalization } = useLocalization();
 
     const userService = useMemo(() => {
         return new PersonaService(graphClient);
@@ -291,7 +293,8 @@ export default function LandingPage() {
     }, [userService, sharePointService, siteUrl, dataverseService]);
 
     const userInitial = user?.displayName?.trim().charAt(0).toUpperCase() || "M";
-    const pendingText = "Waiting for connection";
+    const pendingText = getLocalization("landingPage.waitingForConnection");
+    const servicesCountText = getLocalization("landingPage.servicesCount");
 
     return (
         <main className={styles.page}>
@@ -299,19 +302,23 @@ export default function LandingPage() {
                 <div className={styles.headingGroup}>
                     <p className={styles.eyebrow}>
                         <span className={styles.eyebrowMark} aria-hidden="true" />
-                        Microsoft 365 / Overview
+                        {getLocalization("landingPage.microsoft365Overview")}
                     </p>
-                    <h1 className={styles.title}>Your workspace, at a glance.</h1>
+                    <h1 className={styles.title}>{getLocalization("landingPage.workspaceAtGlance")}</h1>
+                    <h2 className={styles.title}>{getLocalization("landingPage.hello", 
+                        { name: user?.displayName ?? "User" },
+                        { title: user?.jobTitle ?? "Title" }
+                        )}</h2>
                     <p className={styles.description}>
-                        A live view of your Microsoft 365 identity and connected services.
+                        {getLocalization("landingPage.liveViewDescription")}
                     </p>
                 </div>
                 <div className={styles.account}>
                     <span className={styles.avatar} aria-hidden="true">{userInitial}</span>
                     <span className={styles.accountText}>
-                        <span className={styles.accountLabel}>Signed in as</span>
+                        <span className={styles.accountLabel}>{getLocalization("landingPage.signedInAs")}</span>
                         <span className={styles.accountName} title={user?.displayName ?? ""}>
-                            {user?.displayName ?? "Loading your profile"}
+                            {user?.displayName ?? getLocalization("landingPage.loadingProfile")}
                         </span>
                     </span>
                 </div>
@@ -319,8 +326,8 @@ export default function LandingPage() {
 
             <section aria-labelledby="services-heading">
                 <div className={styles.sectionHeading}>
-                    <h2 className={styles.sectionTitle} id="services-heading">Connected services</h2>
-                    <span className={styles.sectionCount}>02 services</span>
+                    <h2 className={styles.sectionTitle} id="services-heading">{getLocalization("landingPage.connectedServices")}</h2>
+                    <span className={styles.sectionCount}>{servicesCountText}</span>
                 </div>
                 <div className={styles.serviceGrid}>
                     <article className={styles.serviceCard} aria-labelledby="sharepoint-heading">
@@ -328,25 +335,25 @@ export default function LandingPage() {
                             <div className={styles.serviceIdentity}>
                                 <span className={styles.serviceMark} aria-hidden="true">SP</span>
                                 <div>
-                                    <h3 className={styles.serviceName} id="sharepoint-heading">SharePoint</h3>
-                                    <p className={styles.serviceDescription}>Site connection</p>
+                                    <h3 className={styles.serviceName} id="sharepoint-heading">{getLocalization("landingPage.sharePoint")}</h3>
+                                    <p className={styles.serviceDescription}>{getLocalization("landingPage.siteConnection")}</p>
                                 </div>
                             </div>
                             <span className={`${styles.status} ${site ? styles.statusReady : ""}`}>
                                 <span className={`${styles.statusDot} ${site ? styles.statusDotReady : ""}`} aria-hidden="true" />
-                                {site ? "Connected" : "Connecting"}
+                                {site ? getLocalization("landingPage.connected") : getLocalization("landingPage.connecting")}
                             </span>
                         </div>
                         <div className={styles.divider} />
                         <dl className={styles.fieldList}>
                             <div className={styles.field}>
-                                <dt className={styles.fieldLabel}>Site URL</dt>
+                                <dt className={styles.fieldLabel}>{getLocalization("landingPage.siteUrl")}</dt>
                                 <dd className={`${styles.fieldValue} ${site ? "" : styles.pendingValue}`}>
                                     {site?.Url ?? pendingText}
                                 </dd>
                             </div>
                             <div className={styles.field}>
-                                <dt className={styles.fieldLabel}>Site ID</dt>
+                                <dt className={styles.fieldLabel}>{getLocalization("landingPage.siteId")}</dt>
                                 <dd className={`${styles.fieldValue} ${site ? "" : styles.pendingValue}`}>
                                     {site?.Id ?? pendingText}
                                 </dd>
@@ -359,31 +366,31 @@ export default function LandingPage() {
                             <div className={styles.serviceIdentity}>
                                 <span className={`${styles.serviceMark} ${styles.dataverseMark}`} aria-hidden="true">DV</span>
                                 <div>
-                                    <h3 className={styles.serviceName} id="dataverse-heading">Dataverse</h3>
-                                    <p className={styles.serviceDescription}>Environment identity</p>
+                                    <h3 className={styles.serviceName} id="dataverse-heading">{getLocalization("landingPage.dataverse")}</h3>
+                                    <p className={styles.serviceDescription}>{getLocalization("landingPage.environmentIdentity")}</p>
                                 </div>
                             </div>
                             <span className={`${styles.status} ${dataverseUser ? styles.statusReady : ""}`}>
                                 <span className={`${styles.statusDot} ${dataverseUser ? styles.statusDotReady : ""}`} aria-hidden="true" />
-                                {dataverseUser ? "Connected" : "Connecting"}
+                                {dataverseUser ? getLocalization("landingPage.connected") : getLocalization("landingPage.connecting")}
                             </span>
                         </div>
                         <div className={styles.divider} />
                         <dl className={`${styles.fieldList} ${styles.dataverseFields}`}>
                             <div className={styles.field}>
-                                <dt className={styles.fieldLabel}>User ID</dt>
+                                <dt className={styles.fieldLabel}>{getLocalization("landingPage.userId")}</dt>
                                 <dd className={`${styles.fieldValue} ${dataverseUser ? "" : styles.pendingValue}`}>
                                     {dataverseUser?.UserId ?? pendingText}
                                 </dd>
                             </div>
                             <div className={styles.field}>
-                                <dt className={styles.fieldLabel}>Organization ID</dt>
+                                <dt className={styles.fieldLabel}>{getLocalization("landingPage.organizationId")}</dt>
                                 <dd className={`${styles.fieldValue} ${dataverseUser ? "" : styles.pendingValue}`}>
                                     {dataverseUser?.OrganizationId ?? pendingText}
                                 </dd>
                             </div>
                             <div className={styles.field}>
-                                <dt className={styles.fieldLabel}>Business Unit ID</dt>
+                                <dt className={styles.fieldLabel}>{getLocalization("landingPage.businessUnitId")}</dt>
                                 <dd className={`${styles.fieldValue} ${dataverseUser ? "" : styles.pendingValue}`}>
                                     {dataverseUser?.BusinessUnitId ?? pendingText}
                                 </dd>

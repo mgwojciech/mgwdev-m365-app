@@ -1,10 +1,4 @@
-import { GraphPersona } from "mgwdev-m365-components";
-import viteLogo from './../../assets/vite.svg'
 import { makeStyles, tokens } from "@fluentui/react-components";
-
-export interface PageHeaderProps {
-    navigateTo?: (url: string) => void;
-}
 
 export const useStyles = makeStyles({
     headerWrapper: {
@@ -66,10 +60,17 @@ export const useStyles = makeStyles({
     },
     rightSideWrapper: {
         display: "flex",
-        marginLeft: "40px"
+        marginLeft: "40px",
+        flexDirection: "row",
+        gap: tokens.spacingHorizontalS,
+        alignItems: "center",
     },
     personaWrapper: {
         margin: `${tokens.spacingVerticalXS} ${tokens.spacingHorizontalXS} 0 0`,
+        alignItems: "center",
+        display: "flex",
+        flexDirection: "column",
+        justifyContent: "center"
     },
 
     helpWrapper: {
@@ -106,6 +107,7 @@ export const useStyles = makeStyles({
         display: "flex",
         height: "100%",
         justifyContent: "center",
+        alignItems: "center",
         marginTop: "5px"
     },
     helpIcon: {
@@ -123,32 +125,3 @@ export const useStyles = makeStyles({
         }
     }
 })
-export function AppHeader(props: PageHeaderProps) {
-    const styles = useStyles();
-
-    return (
-        <div className={styles.headerWrapper}>
-            <div className={styles.leftSideWrapper} >
-                <div className={styles.logoWrapper}>
-                    <img src={viteLogo} className={styles.logo} />
-                </div>
-                <div className={styles.pageTitleWrapper}>
-                    <h2 className={styles.headerText} onClick={() => {
-                        props.navigateTo ? props.navigateTo('/') : window.location.assign('/')
-                    }}>MGWDev App</h2>
-                </div>
-            </div>
-            <div className={styles.rightSideWrapper}>
-                <div className={styles.iconWrapper}>
-                </div>
-
-                <div className={styles.iconWrapper}>
-                </div>
-                <div className={styles.personaWrapper}>
-                    <GraphPersona size="extra-large" />
-                </div>
-            </div>
-        </div>
-
-    )
-}

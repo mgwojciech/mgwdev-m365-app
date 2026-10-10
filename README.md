@@ -47,6 +47,23 @@ If you prefer creating a new repository on GitHub first, use the GitHub template
 - Fluent UI components and layout primitives
 - Microsoft 365 service wiring for authentication, Graph, SharePoint, and Dataverse
 - A starter landing page that reads the signed-in user and connected service data
+- Built-in localization support with language persistence and browser/system fallback
+- Dark mode support with theme persistence in local storage
+
+## Localization and theme support
+
+The app includes a lightweight localization layer that resolves strings from JSON resource files stored under `src/localization/`.
+
+- Supported languages include: English, German, French, and Polish. You can add more by adding json file with translations to `src/localization/` and to `supportedLanguages` in `src/context/LocalizationContext.tsx`
+- The active language is detected from the browser/system preference when no saved user choice exists.
+- The user-selected language is stored in `localStorage` and used on subsequent loads.
+- Keys follow a consistent pattern such as `common.settings`, `common.darkMode`, and `landingPage.hello`.
+
+Dark mode follows the same pattern:
+
+- The app prefers the system color scheme by default.
+- A user can switch between light and dark mode from the app settings drawer.
+- The selected theme is persisted in `localStorage` so it remains across refreshes.
 
 ## Project structure
 

@@ -1,11 +1,12 @@
 import { createRoot } from 'react-dom/client'
 import App from './App.tsx'
-import { FluentProvider, webLightTheme, IdPrefixProvider } from '@fluentui/react-components'
+import { IdPrefixProvider } from '@fluentui/react-components'
+import { ThemeProvider } from './context/ThemeContext.tsx'
 
 createRoot(document.getElementById('root')!).render(
   <IdPrefixProvider value="mgwdev-m365-app">
-    <FluentProvider theme={webLightTheme} targetDocument={document} applyStylesToPortals>
+    <ThemeProvider>
       <App />
-    </FluentProvider>
+    </ThemeProvider>
   </IdPrefixProvider>,
 )
