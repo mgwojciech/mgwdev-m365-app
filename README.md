@@ -23,6 +23,8 @@ You will need an app registration in EntraId with default scopes to MS Graph, Dy
 Of course, if needed - You can remove the unneeded code and work only with Grpah, SP or Dataverse.
 Your app registration needs to have configured reply url to http://localhost:3000 and http://localhost:3000/redirect - if You already have an app registered on different port, just update the port in `vite.config.ts`
 
+If You need some help with it: [MS Docs](https://learn.microsoft.com/en-us/entra/identity-platform/quickstart-register-app)
+
 ```env
 VITE_FRONTEND_CLIENT_ID=your-application-client-id
 VITE_FRONTEND_TENANT_ID=organizations
