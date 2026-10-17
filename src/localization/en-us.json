@@ -8,6 +8,8 @@
     "sideNav.sidebarNavigation": "Sidebar navigation",
     "sideNav.expandNavigation": "Expand navigation",
     "sideNav.collapseNavigation": "Collapse navigation",
+    "sideNav.userAdmin": "User Administration",
+    "sideNav.entityAdmin": "Entity Administration",
     "landingPage.hello": "Hello, {name}!",
     "landingPage.microsoft365Overview": "Microsoft 365 / Overview",
     "landingPage.workspaceAtGlance": "Your workspace, at a glance.",
@@ -27,5 +29,6 @@
     "landingPage.userId": "User ID",
     "landingPage.organizationId": "Organization ID",
     "landingPage.businessUnitId": "Business Unit ID",
-    "landingPage.waitingForConnection": "Waiting for connection"
+    "landingPage.waitingForConnection": "Waiting for connection",
+    "entityAdminPage.fetchTablesErrorTitle": "Error fetching tables"
 }

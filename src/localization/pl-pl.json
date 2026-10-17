@@ -8,6 +8,8 @@
     "sideNav.sidebarNavigation": "Nawigacja boczna",
     "sideNav.expandNavigation": "Rozwiń nawigację",
     "sideNav.collapseNavigation": "Zwiń nawigację",
+    "sideNav.userAdmin": "Administracja użytkownikami",
+    "sideNav.entityAdmin": "Administracja jednostkami",
     "landingPage.hello": "Cześć, {name}!",
     "landingPage.microsoft365Overview": "Microsoft 365 / Przegląd",
     "landingPage.workspaceAtGlance": "Twój obszar roboczy w pigułce.",
@@ -27,5 +29,6 @@
     "landingPage.userId": "ID użytkownika",
     "landingPage.organizationId": "ID organizacji",
     "landingPage.businessUnitId": "ID jednostki biznesowej",
-    "landingPage.waitingForConnection": "Oczekiwanie na połączenie"
+    "landingPage.waitingForConnection": "Oczekiwanie na połączenie",
+    "entityAdminPage.fetchTablesErrorTitle": "Błąd podczas pobierania tabel"
 }

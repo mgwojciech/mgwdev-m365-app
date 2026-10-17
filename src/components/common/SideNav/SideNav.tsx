@@ -46,13 +46,11 @@ export function SideNav(props: {
         if (!item.icon) {
             return null;
         }
-
-        const IconComponent = typeof item.icon === "string" ? iconMap[item.icon as keyof typeof iconMap] : item.icon;
-        if (!IconComponent) {
-            return null;
+        if (typeof item.icon === "string" && iconMap[item.icon as keyof typeof iconMap]) {
+            const IconComponent = iconMap[item.icon as keyof typeof iconMap];
+            return <IconComponent className={styles.icon} />;
         }
-
-        return <IconComponent className={styles.icon} />;
+        return <div className={styles.icon}>{item.icon}</div>;
     };
 
     const handleNavigate = (item: SideNavItem) => {

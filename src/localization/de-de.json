@@ -8,6 +8,8 @@
     "sideNav.sidebarNavigation": "Seitenleisten-Navigation",
     "sideNav.expandNavigation": "Navigation erweitern",
     "sideNav.collapseNavigation": "Navigation minimieren",
+    "sideNav.userAdmin": "Benutzerverwaltung",
+    "sideNav.entityAdmin": "Entity Verwaltung",
     "landingPage.hello": "Hallo, {name}!",
     "landingPage.microsoft365Overview": "Microsoft 365 / Übersicht",
     "landingPage.workspaceAtGlance": "Ihr Arbeitsbereich auf einen Blick.",
@@ -27,5 +29,6 @@
     "landingPage.userId": "Benutzer-ID",
     "landingPage.organizationId": "Organisations-ID",
     "landingPage.businessUnitId": "Business-Unit-ID",
-    "landingPage.waitingForConnection": "Warten auf Verbindung"
+    "landingPage.waitingForConnection": "Warten auf Verbindung",
+    "entityAdminPage.fetchTablesErrorTitle": "Fehler beim Abrufen der Tabellen"
 }
