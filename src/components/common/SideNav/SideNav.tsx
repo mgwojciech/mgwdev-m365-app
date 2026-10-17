@@ -96,9 +96,10 @@ export function SideNav(props: {
                     onClick={() => setExpandedGroups((current) => ({ ...current, [item.key]: !isExpanded }))}
                     icon={renderIcon(item)}
                     iconPosition="before"
+                    aria-label={itemText}
                     style={{ paddingLeft: `${level * 12 + 12}px` }}
                 >
-                    {!isCollapsed && itemText}
+                    <span className={`${styles.navText} ${isCollapsed ? styles.collapsedText : ""}`}>{itemText}</span>
                 </Button>
                 {!isCollapsed && isExpanded && (
                     <div className={styles.groupChildren}>
@@ -115,10 +116,11 @@ export function SideNav(props: {
             type="button"
             className={styles.navItem}
             onClick={() => handleNavigate(item)}
+            aria-label={itemText}
             style={{ paddingLeft: `${level * 12 + 12}px` }}
         >
             {renderIcon(item)}
-            {!isCollapsed && <span className={styles.navText}>{itemText}</span>}
+            <span className={`${styles.navText} ${isCollapsed ? styles.collapsedText : ""}`}>{itemText}</span>
         </Button>;
     };
 

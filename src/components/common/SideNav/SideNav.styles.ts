@@ -8,19 +8,43 @@ export const useStyles = makeStyles({
         justifyContent: "space-between",
         width: "280px",
         minWidth: "280px",
-        height: "calc(100vh - 50px)",
+        height: "calc(100vh - 56px)",
         padding: "12px 10px 16px",
         background: `linear-gradient(180deg, ${tokens.colorNeutralBackground2} 0%, ${tokens.colorNeutralBackground1} 100%)`,
         borderRight: `1px solid ${tokens.colorNeutralStroke1}`,
         boxShadow: tokens.shadow4,
         transition: "width 180ms ease, min-width 180ms ease",
         boxSizing: "border-box",
+        "@media (max-width: 640px)": {
+            position: "fixed",
+            left: 0,
+            right: 0,
+            bottom: 0,
+            zIndex: 1000,
+            width: "100%",
+            minWidth: 0,
+            height: "calc(68px + env(safe-area-inset-bottom))",
+            padding: `0 ${tokens.spacingHorizontalS} env(safe-area-inset-bottom)`,
+            flexDirection: "row",
+            alignItems: "stretch",
+            justifyContent: "center",
+            borderRight: 0,
+            borderTop: `1px solid ${tokens.colorNeutralStroke1}`,
+            boxShadow: tokens.shadow16,
+            transition: "none",
+        },
     },
     rootCollapsed: {
         width: "76px",
         minWidth: "76px",
         paddingLeft: "8px",
         paddingRight: "8px",
+        "@media (max-width: 640px)": {
+            width: "100%",
+            minWidth: 0,
+            paddingLeft: tokens.spacingHorizontalS,
+            paddingRight: tokens.spacingHorizontalS,
+        },
     },
     navHeader: {
         display: "flex",
@@ -29,6 +53,9 @@ export const useStyles = makeStyles({
         minHeight: "48px",
         gap: tokens.spacingHorizontalS,
         padding: `0 ${tokens.spacingHorizontalXS}`,
+        "@media (max-width: 640px)": {
+            display: "none",
+        },
     },
     brand: {
         fontSize: tokens.fontSizeBase300,
@@ -46,12 +73,23 @@ export const useStyles = makeStyles({
     },
     divider: {
         margin: `${tokens.spacingVerticalXS} 0 ${tokens.spacingVerticalM}`,
+        "@media (max-width: 640px)": {
+            display: "none",
+        },
     },
     navContent: {
         display: "flex",
         flexDirection: "column",
         gap: "6px",
         overflow: "hidden",
+        "@media (max-width: 640px)": {
+            flexDirection: "row",
+            alignItems: "center",
+            justifyContent: "space-around",
+            width: "100%",
+            height: "100%",
+            overflow: "visible",
+        },
     },
     headerItem: {
         padding: `${tokens.spacingVerticalXS} ${tokens.spacingHorizontalS}`,
@@ -66,6 +104,10 @@ export const useStyles = makeStyles({
         display: "flex",
         flexDirection: "column",
         gap: "4px",
+        "@media (max-width: 640px)": {
+            flex: 1,
+            minWidth: 0,
+        },
     },
     groupButton: {
         justifyContent: "space-between",
@@ -75,6 +117,16 @@ export const useStyles = makeStyles({
         color: tokens.colorNeutralForeground1,
         backgroundColor: "transparent",
         transition: "background-color 120ms ease, transform 120ms ease",
+        "@media (max-width: 640px)": {
+            flexDirection: "column",
+            justifyContent: "center",
+            gap: tokens.spacingVerticalXXS,
+            width: "100%",
+            minWidth: 0,
+            minHeight: "48px",
+            padding: tokens.spacingVerticalXS,
+            fontSize: tokens.fontSizeBase200,
+        },
         "&:hover": {
             backgroundColor: tokens.colorNeutralBackground1,
         },
@@ -97,6 +149,16 @@ export const useStyles = makeStyles({
         fontWeight: tokens.fontWeightMedium,
         outline: "none",
         minWidth: "45px",
+        "@media (max-width: 640px)": {
+            flex: 1,
+            flexDirection: "column",
+            justifyContent: "center",
+            gap: tokens.spacingVerticalXXS,
+            minWidth: 0,
+            minHeight: "48px",
+            padding: tokens.spacingVerticalXS,
+            fontSize: tokens.fontSizeBase200,
+        },
         "&:hover": {
             backgroundColor: tokens.colorNeutralBackground1,
             boxShadow: `inset 0 0 0 1px ${tokens.colorNeutralStroke1}`,
@@ -109,12 +171,25 @@ export const useStyles = makeStyles({
         overflow: "hidden",
         textOverflow: "ellipsis",
         whiteSpace: "nowrap",
+        "@media (max-width: 640px)": {
+            maxWidth: "100%",
+            fontSize: tokens.fontSizeBase200,
+        },
+    },
+    collapsedText: {
+        display: "none",
+        "@media (max-width: 640px)": {
+            display: "block",
+        },
     },
     groupChildren: {
         display: "flex",
         flexDirection: "column",
         gap: "4px",
         paddingLeft: tokens.spacingHorizontalXS,
+        "@media (max-width: 640px)": {
+            display: "none",
+        },
     },
     icon: {
         width: "16px",
@@ -122,5 +197,5 @@ export const useStyles = makeStyles({
         minWidth: "16px",
         minHeight: "16px",
         color: tokens.colorBrandForeground1,
-    }
+    },
 });

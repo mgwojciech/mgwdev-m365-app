@@ -150,6 +150,9 @@ const useStyles = makeStyles({
         transitionProperty: "transform, box-shadow",
         transitionDuration: "160ms",
         transitionTimingFunction: "ease-out",
+        "@media (max-width: 420px)": {
+            padding: tokens.spacingHorizontalM
+        },
         ":hover": {
             transform: "translateY(-2px)",
             boxShadow: tokens.shadow8
@@ -162,7 +165,11 @@ const useStyles = makeStyles({
         display: "flex",
         alignItems: "flex-start",
         justifyContent: "space-between",
-        gap: tokens.spacingHorizontalM
+        gap: tokens.spacingHorizontalM,
+        "@media (max-width: 420px)": {
+            flexDirection: "column",
+            gap: tokens.spacingVerticalS
+        }
     },
     serviceIdentity: {
         display: "flex",

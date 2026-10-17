@@ -16,21 +16,23 @@ export interface PageHeaderProps {
 export function AppHeader(props: PageHeaderProps) {
     const styles = useStyles();
     const { getLocalization } = useLocalization();
+    const { navigateTo, onLocationChange } = props;
     const [appTitle, setAppTitle] = useState(getLocalization("common.appName"));
 
     useEffect(() => {
-        if (props.onLocationChange) {
-            const unsubscribe = props.onLocationChange(() => {
-                const newLocation = window.location.pathname;
-                const locationEntity = routes.find(route => route.path === newLocation);
-                if (locationEntity) {
-                    setAppTitle(getLocalization(locationEntity.localizationKey));
-                }
-
-            });
-            return unsubscribe;
+        if (!onLocationChange) {
+            return;
         }
-    }, []);
+
+        const unsubscribe = onLocationChange(() => {
+            const newLocation = window.location.pathname;
+            const locationEntity = routes.find(route => route.path === newLocation);
+            if (locationEntity) {
+                setAppTitle(getLocalization(locationEntity.localizationKey));
+            }
+        });
+        return unsubscribe;
+    }, [getLocalization, onLocationChange]);
 
     return (
         <div className={styles.headerWrapper}>
@@ -40,19 +42,20 @@ export function AppHeader(props: PageHeaderProps) {
                 </div>
                 <div className={styles.pageTitleWrapper}>
                     <h2 className={styles.headerText} onClick={() => {
-                        props.navigateTo ? props.navigateTo('/') : window.location.assign('/')
+                        if (navigateTo) {
+                            navigateTo('/');
+                        } else {
+                            window.location.assign('/');
+                        }
                     }}>{appTitle}</h2>
                 </div>
             </div>
             <div className={styles.rightSideWrapper}>
                 <div className={styles.iconWrapper}>
-                </div>
-
-                <div className={styles.iconWrapper}>
                     <CommonAppSettings />
                 </div>
                 <div className={styles.personaWrapper}>
-                    <GraphPersona size="large" />
+                    <GraphPersona size="small" />
                 </div>
             </div>
         </div>
