@@ -1,7 +1,7 @@
 import { Suspense } from 'react'
 import { makeStyles, tokens } from '@fluentui/react-components';
 import { RouterProvider } from 'react-router-dom'
-import { Msal2AuthenticationService } from 'mgwdev-m365-helpers/lib-commonjs/services/Msal2AuthenticationService';
+import { Msal2AuthenticationService } from 'mgwdev-m365-helpers/lib/services/Msal2AuthenticationService';
 import { AuthenticationContextProvider, DataverseContextProvider, GraphContextProvider, SPContextProvider } from 'mgwdev-m365-components'
 import { AppHeader } from './components/common/AppHeader/AppHeader'
 import { Spinner } from '@fluentui/react-components'

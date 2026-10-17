@@ -16,16 +16,19 @@ export default defineConfig({
       },
       output: {
         manualChunks(id) {
-          if (id.includes('node_modules')) {
-            if (id.includes('react') || id.includes('react-dom') || id.includes('react-router-dom')) {
-              return 'vendor';
-            }
-            if (id.includes('@fluentui')) {
-              return 'fluent';
-            }
-            if (id.includes('mgwdev-m365')) {
-              return 'ms365';
-            }
+          const normalizedId = id.replaceAll('\\', '/');
+          if (!normalizedId.includes('/node_modules/')) {
+            return;
+          }
+
+          if (/\/node_modules\/(@fluentui\/tokens|@griffel\/|@floating-ui\/|tabster\/|rtl-css-js\/)/.test(normalizedId)) {
+            return 'fluent-base';
+          }
+          if (/\/node_modules\/@fluentui\/react-/.test(normalizedId)) {
+            return 'fluent-components';
+          }
+          if (/\/node_modules\/(react|react-dom|react-router|react-router-dom|scheduler)\//.test(normalizedId)) {
+            return 'vendor';
           }
         }
       }
