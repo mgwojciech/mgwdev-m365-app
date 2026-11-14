@@ -8,6 +8,8 @@ description: "Use when: extending this template into a new Microsoft 365 app fea
 
 Use this skill when you are adding new functionality to the mgwdev-m365-app template and want to keep the implementation aligned with the libraries already in the repo.
 
+For React component design, state, effects, accessibility, and testing, also use the [React best practices skill](../react-best-practices/SKILL.md).
+
 ## Primary goal
 
 Extend the app by reusing the existing Microsoft 365 provider layer, helper services, and Fluent UI components instead of introducing ad hoc fetch logic or a parallel UI pattern.

@@ -88,6 +88,10 @@ Dark mode follows the same pattern:
 - `src/model/` contains the TypeScript models used by the app.
 - `src/components/` contains shared UI components.
 
+## Agent skills
+
+The project includes reusable agent skills in [`.agents/skills/`](./.agents/skills/). Use the [project extension skill](./.agents/skills/mgwdev-m365-project-extension-skill/SKILL.md) for the Microsoft 365 architecture and the [React best practices skill](./.agents/skills/react-best-practices/SKILL.md) for component design, state, effects, accessibility, testing, and links to further guidance. The folder also contains skills for the Microsoft 365 components and helpers libraries.
+
 ## Notes
 
 - The app expects the Vite environment variables above to be present at runtime.
